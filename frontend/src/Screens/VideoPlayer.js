@@ -18,9 +18,10 @@ export default function VideoPlayer(props){
 //    console.log(obj);
 console.log(vdoURL)
     return(
-        <div className="player">
-            <ReactPlayer  url={vdoURL} playing="true" controls="true"  />
-           {/* <ReactVideo src="/files/video1626845871104.mp4"/> */}
+        <div className="player-wrapper">
+           
+            <ReactPlayer  url={vdoURL}  playing="true" controls="true"  width='80%' height='50%' />
+            
         </div>
     )
 }
