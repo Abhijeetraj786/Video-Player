@@ -99,10 +99,10 @@ app.get('/video',expressAsyncHandler(async (req, res) => {
     })
   );
 
-const port=process.env.port;
+const port=process.env.port||3000;
 app.get('/',(req,res)=>{
   res.send("server is created");
 })
-app.listen(port,()=>{
+app.listen(port,"0.0.0.0",()=>{
     console.log(`Serve at http://localhost:${port}`);
 })
