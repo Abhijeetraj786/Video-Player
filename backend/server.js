@@ -16,7 +16,6 @@ useUnifiedTopology: true,
 useCreateIndex: true,
 });
  app.use(express.urlencoded({ extended: true }));
- app.use('/upload', express.static(path.join(__dirname, '/frontend/public')));
 app.use(express.static(path.join(__dirname, '/frontend/build')));
 // app.get('', (req, res) =>
 //   res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
@@ -26,7 +25,7 @@ app.use(express.static(path.join(__dirname, '/frontend/build')));
 // });
 var storage =multer.diskStorage({
     destination:function (req,file,cb){
-      cb(null,'frontend/public')
+      cb(null,'frontend/build')
     },
     filename:(req,file,cb)=>{
       if(file.fieldname==="thumbnail"){
