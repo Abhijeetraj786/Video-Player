@@ -22,7 +22,7 @@ export default function Home(props){
     return (
         <div className = "container">
           {
-              video.map(video =>
+              video.map((video) =>
                  <div key={video._id} className="card">
                      <Link to={'/video_player/'+video._id}>
                          <img className="medium" src={video.thumbnail} alt='movie thumbnail'/>

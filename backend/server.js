@@ -15,24 +15,17 @@ mongoose.connect(process.env.MONGODB_URL,{ useNewUrlParser: true,
 useUnifiedTopology: true,
 useCreateIndex: true,
 });
-// if(process.env.NODE_ENV == "production")
-// {
-//   app.use(express.static("frontend/build"));
-//   app.get('*', (req, res) =>
-//   res.sendFile('/frontend/build/index.html')
-// );
-// }
  app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '/frontend/build')));
-app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
-);
+// app.get('', (req, res) =>
+//   res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
+// );
 // app.get('/',(req,res)=>{
 //     res.send("server is created ");
 // });
 var storage =multer.diskStorage({
     destination:function (req,file,cb){
-      cb(null,'frontend/build')
+      cb(null,'frontend/public')
     },
     filename:(req,file,cb)=>{
       if(file.fieldname==="thumbnail"){
@@ -84,6 +77,7 @@ app.post('/upload',upload.fields([{
 });
 app.get('/video',expressAsyncHandler(async (req, res) => {
     const vdo= await Video.find({});
+    console.log(vdo);
     res.send(vdo);
   }))
 
@@ -99,7 +93,7 @@ app.get('/video',expressAsyncHandler(async (req, res) => {
     })
   );
 
-const port=process.env.PORT||3000;
+const port=process.env.PORT||5000;
 app.get('/',(req,res)=>{
   res.send("server is created");
 })
