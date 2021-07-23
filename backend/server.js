@@ -99,7 +99,7 @@ app.get('/video',expressAsyncHandler(async (req, res) => {
     })
   );
 
-const port=process.env.port||5000;
+const port=process.env.port;
 app.get('/',(req,res)=>{
   res.send("server is created");
 })
