@@ -12,7 +12,7 @@ export default function PrivateRoute({ component: Component, ...rest }) {
         userInfo ? (
           <Component {...props}></Component>
         ) : (
-          <Redirect to="/signin?redirect=upload" />
+          <Redirect to="/signin?redirect=upload"/>
         )
       }
     ></Route>
