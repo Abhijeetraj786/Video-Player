@@ -37,7 +37,7 @@ function App() {
               </ul>
               </div>
             ) : (<>
-              <Link to="/signin">Sign In</Link>
+              <Link to="/signin">SignIn</Link>
               </>
             )}
        </div>

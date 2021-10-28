@@ -37,11 +37,11 @@ console.log(props);
         {loading && <LoadingBox/> }
         {error && <MessageBox variant = "danger">{error}</MessageBox> }
         <div>
-          <label htmlFor="email">Email address / Mobile Number</label>
+          <label htmlFor="email">Email Address / Mobile Number</label>
           <input
             type="tel"
             id="email"
-            placeholder="Enter email / mobile number"
+            placeholder="Enter Email / Mobile Number"
             required
             onChange={(e) => setEmailORMob(e.target.value)}
           ></input>
@@ -51,7 +51,7 @@ console.log(props);
           <input
             type="password"
             id="password"
-            placeholder="Enter password"
+            placeholder="Enter Password"
             required
             onChange={(e) => setPassword(e.target.value)}
           ></input>
@@ -65,9 +65,9 @@ console.log(props);
         <div>
           <label />
           <div>
-          New customer?{' '}
+          New Customer?{' '}
             <Link to={`/register?redirect=${redirect}`}>
-              Create your account
+              Create Your Account
             </Link>
           </div>
         </div>
