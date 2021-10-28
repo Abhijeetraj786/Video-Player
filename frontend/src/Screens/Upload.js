@@ -1,27 +1,14 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
-import {ProgressBar} from 'react-bootstrap'
+import {ProgressBar} from 'react-bootstrap';
 
 export default function Upload(props){
     const [name,setName]=useState('');
     const [year,setYear]=useState('');
     const [language,setLanguage]=useState('');
     const [thumbnail,setThumbnail]=useState([]);
-     const [video,setVideo]=useState([]);
-     const [progress, setProgress] = useState();
-    // const fileOnChange=async(e)=>{
-    //     setVideo(e.target.files[0]);
-    //     const formData =new FormData();
-    //     formData.append('video',video);
-    //     const config={
-    //         headers:{
-    //             'content-type':'multipart/form-data'
-    //         }
-    //         }
-    //     await Axios.post('http://localhost:5000/vdo',formData);
-
-    // }
-
+    const [video,setVideo]=useState([]);
+    const [progress, setProgress] = useState();
     const submitHandler =async(e) => {
         e.preventDefault();
         const bodyFormData = new FormData();
@@ -32,35 +19,16 @@ export default function Upload(props){
         bodyFormData.append('video',video);
         const config={
             headers:{
-                'content-type':'multipart/form-data'
-
+                'content-type':'multipart/form-data',
             }
         }
-        console.log(thumbnail);
-        console.log(video);
-       
     await Axios.post('/upload',bodyFormData,{config, onUploadProgress: data => {
         //Set the progress value to show the progress bar
         setProgress(Math.round((100 * data.loaded) / data.total))
       },});
       };
-      // const uploadFileHandler = async (e) => {
-      //   const file = e.target.files[0];
-      //   const bodyFormData = new FormData();
-      //   bodyFormData.append('thumbnail', file);
-      //   try {
-      //     const { data } = await Axios.post('/profile-upload-single', bodyFormData, {
-      //       headers: {
-      //         'Content-Type': 'multipart/form-data'
-      //       }
-      //     });
-      //     setThumbnail(data);
-      //   } catch (error) {
-      //    alert("Error")
-      //   }
-      // };
 
-    return(
+    return<>
         <div className = "form-content">
             <form  onSubmit={submitHandler}>
                 <div className="form">
@@ -138,5 +106,5 @@ export default function Upload(props){
              </div>
             </form>
         </div>
-    )
+    </>
 }

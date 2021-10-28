@@ -1,28 +1,24 @@
 import express from 'express';
 import mongoose  from 'mongoose';
 import multer from 'multer';
-import Video from './model/vdomodel.js';
+import Video from './models/vdomodel.js';
 import cors from 'cors';
 import path from 'path';
 import dotenv from 'dotenv';
 import expressAsyncHandler from 'express-async-handler';
+import userRouter from './userRouter.js';
 const app=express();
 const __dirname = path.resolve();
 dotenv.config();
 app.use(express.json());
 app.use(cors());
-mongoose.connect(process.env.MONGODB_URL,{ useNewUrlParser: true,
+mongoose.connect(process.env.MONGODB_URL||'mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false',{ useNewUrlParser: true,
 useUnifiedTopology: true,
 useCreateIndex: true,
 });
  app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '/frontend/build')));
-// app.get('', (req, res) =>
-//   res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
-// );
-// app.get('/',(req,res)=>{
-//     res.send("server is created ");
-// });
+app.use('/api/users/', userRouter);
 var storage =multer.diskStorage({
     destination:function (req,file,cb){
       cb(null,'frontend/build')
